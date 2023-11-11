@@ -327,9 +327,10 @@ def send():
     elif(tim>150):
         return render_template("home.html",info="MAXIMUM 150 ONLY",number=number)
     else:
-        m1=threading.Thread(target=main,args=(number,tim,))
-        m1.start()
-        return render_template('success.html')
+        try:
+			main(number,tim)
+		else:
+            return render_template('success.html')
 
 if __name__=='__main__':
     app.run(debug=True)
